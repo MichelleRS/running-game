@@ -13,7 +13,34 @@ setPixelToWorldScale();
 // if window gets resized, make function call to scale world
 window.addEventListener("resize", setPixelToWorldScale);
 
+/* state */
+// declare variable to hold last time a frame runs in update()
+let lastTime;
+
 /* functions */
+// game update function
+function update(time) {
+  // handle gap between game load and start time
+  if (lastTime == null) {
+    console.log("null!");
+    // update last time to be current time
+    lastTime = time;
+    // update frame
+    window.requestAnimationFrame(update);
+    // return
+    return;
+  }
+  // initialize variable to hold elapsed time between frame updates
+  const delta = time - lastTime;
+  console.log("delta", delta);
+  // set lastTime to time
+  lastTime = time;
+  // call update function
+  window.requestAnimationFrame(update);
+}
+
+window.requestAnimationFrame(update);
+
 // function to scale world
 function setPixelToWorldScale() {
   let worldToPixelScale;
