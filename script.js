@@ -5,6 +5,8 @@ import { setupGround, updateGround } from "./ground.js";
 // world width and height ratio for use in setPixelToWorldScale()
 const WORLD_WIDTH = 100;
 const WORLD_HEIGHT = 30;
+// speed scale for increasing speed as game updates
+const SPEED_SCALE_INCREASE = 0.00001;
 
 /* get DOM elements */
 // get world element
@@ -28,6 +30,8 @@ window.addEventListener("keydown", handleStartGame, { once: true });
 let lastTime;
 // declare variable to hold score
 let score;
+// declare variable to hold speed scale
+let speedScale;
 
 /* functions */
 // game update function
@@ -45,7 +49,9 @@ function update(time) {
   // initialize variable to hold elapsed time between frame updates
   const delta = time - lastTime;
   // function call to update position of the ground
-  updateGround(delta);
+  updateGround(delta, speedScale);
+  // function call to update speedScale
+  updateSpeedScale(delta);
   // update score
   updateScore(delta);
   // set lastTime to time
@@ -54,16 +60,23 @@ function update(time) {
   window.requestAnimationFrame(update);
 }
 
+function updateSpeedScale(delta) {
+  speedScale += delta * SPEED_SCALE_INCREASE;
+}
+
 function updateScore(delta) {
   // for every second that passes, add 10 points to score
   score += delta * 0.01;
   // update score element to display score as a whole number
   scoreEl.textContent = Math.floor(score);
 }
+
 function handleStartGame() {
   console.log("I pressed any key to start the game!");
   // set lastTime to null for game restart
   lastTime = null;
+  // set speed scale
+  speedScale = 0.5;
   // set score to 0
   score = 0;
   // function call to set up ground elements

@@ -20,12 +20,12 @@ export function setupGround() {
 }
 
 // function to update ground
-export function updateGround(delta) {
+export function updateGround(delta, speedScale) {
   // update position of ground elements
   groundEls.forEach((ground) => {
     // increment ground element for the --left property in css
     // note: negative value moves it backwards
-    incrementCustomProperty(ground, "--left", delta * SPEED * -1);
+    incrementCustomProperty(ground, "--left", delta * speedScale * SPEED * -1);
     // if the --left property of .ground is less than or equal to -300 (the ground moved off the edge of the screen)
     // note: solution for ground running out
     if (getCustomProperty(ground, "--left") <= -300)
