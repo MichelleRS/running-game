@@ -1,5 +1,6 @@
 /* imports */
 import { setupGround, updateGround } from "./ground.js";
+import { setupPlayer, updatePlayer } from "./player.js";
 
 /* initialize constants */
 // world width and height ratio for use in setPixelToWorldScale()
@@ -50,6 +51,8 @@ function update(time) {
   const delta = time - lastTime;
   // function call to update position of the ground
   updateGround(delta, speedScale);
+  // function call to update player
+  updatePlayer(delta, speedScale);
   // function call to update speedScale
   updateSpeedScale(delta);
   // update score
@@ -81,6 +84,8 @@ function handleStartGame() {
   score = 0;
   // function call to set up ground elements
   setupGround();
+  // function call to set up player
+  setupPlayer();
   //remove start screen text
   startScreenEl.classList.add("hide");
   // update frame
