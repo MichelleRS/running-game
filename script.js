@@ -11,7 +11,9 @@ const WORLD_HEIGHT = 30;
 const worldEl = document.querySelector("[data-world");
 // get start screen text
 const startScreenEl = document.querySelector("[data-start-screen]");
-console.log("startScreenEl", startScreenEl);
+// get score element
+const scoreEl = document.querySelector("[data-score]");
+console.log("scoreEl", scoreEl);
 
 /* on load and events */
 // function call to scale world based on how big screen is
@@ -24,6 +26,8 @@ window.addEventListener("keydown", handleStartGame, { once: true });
 /* state */
 // declare variable to hold last time a frame runs in update()
 let lastTime;
+// declare variable to hold score
+let score;
 
 /* functions */
 // game update function
@@ -42,16 +46,26 @@ function update(time) {
   const delta = time - lastTime;
   // function call to update position of the ground
   updateGround(delta);
+  // update score
+  updateScore(delta);
   // set lastTime to time
   lastTime = time;
   // call update function
   window.requestAnimationFrame(update);
 }
 
+function updateScore(delta) {
+  // for every second that passes, add 10 points to score
+  score += delta * 0.01;
+  // update score element to display score as a whole number
+  scoreEl.textContent = Math.floor(score);
+}
 function handleStartGame() {
   console.log("I pressed any key to start the game!");
   // set lastTime to null for game restart
   lastTime = null;
+  // set score to 0
+  score = 0;
   // function call to set up ground elements
   setupGround();
   //remove start screen text
