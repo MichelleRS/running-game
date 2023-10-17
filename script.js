@@ -1,3 +1,6 @@
+/* imports */
+import { setupGround, updateGround } from "./ground.js";
+
 /* initialize constants */
 // world width and height ratio for use in setPixelToWorldScale()
 const WORLD_WIDTH = 100;
@@ -12,6 +15,8 @@ const worldEl = document.querySelector("[data-world");
 setPixelToWorldScale();
 // if window gets resized, make function call to scale world
 window.addEventListener("resize", setPixelToWorldScale);
+// function call to set up ground elements
+setupGround();
 
 /* state */
 // declare variable to hold last time a frame runs in update()
@@ -32,7 +37,8 @@ function update(time) {
   }
   // initialize variable to hold elapsed time between frame updates
   const delta = time - lastTime;
-  console.log("delta", delta);
+  // function call to update position of the ground
+  updateGround(delta);
   // set lastTime to time
   lastTime = time;
   // call update function
