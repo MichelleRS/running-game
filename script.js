@@ -15,8 +15,8 @@ const worldEl = document.querySelector("[data-world");
 setPixelToWorldScale();
 // if window gets resized, make function call to scale world
 window.addEventListener("resize", setPixelToWorldScale);
-// function call to set up ground elements
-setupGround();
+// if any key is pressed, start game with condition of only happening once on key press
+window.addEventListener("keydown", handleStartGame, { once: true });
 
 /* state */
 // declare variable to hold last time a frame runs in update()
@@ -45,7 +45,15 @@ function update(time) {
   window.requestAnimationFrame(update);
 }
 
-window.requestAnimationFrame(update);
+function handleStartGame() {
+  console.log("I pressed any key to start the game!");
+  // set lastTime to null for game restart
+  lastTime = null;
+  // function call to set up ground elements
+  setupGround();
+  // update frame
+  window.requestAnimationFrame(update);
+}
 
 // function to scale world
 function setPixelToWorldScale() {
