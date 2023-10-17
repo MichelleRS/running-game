@@ -9,6 +9,9 @@ const WORLD_HEIGHT = 30;
 /* get DOM elements */
 // get world element
 const worldEl = document.querySelector("[data-world");
+// get start screen text
+const startScreenEl = document.querySelector("[data-start-screen]");
+console.log("startScreenEl", startScreenEl);
 
 /* on load and events */
 // function call to scale world based on how big screen is
@@ -51,6 +54,8 @@ function handleStartGame() {
   lastTime = null;
   // function call to set up ground elements
   setupGround();
+  //remove start screen text
+  startScreenEl.classList.add("hide");
   // update frame
   window.requestAnimationFrame(update);
 }
