@@ -56,6 +56,15 @@ export function updateHurdle(delta, speedScale) {
   nextHurdleTime -= delta;
 }
 
+// get dimension values of hurdle element to use for collision detection
+export function getHurdleRects() {
+  // use .map() to convert hurdle into a different value
+  return [...document.querySelectorAll("[data-hurdle]")].map((hurdle) => {
+    // return hurdle element dimension values
+    return hurdle.getBoundingClientRect();
+  });
+}
+
 /* local functions */
 // function to create a hurdle element to call in setupHurdle()
 function createHurdle() {

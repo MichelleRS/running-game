@@ -53,6 +53,11 @@ export function updatePlayer(delta, speedScale) {
   handleJump(delta);
 }
 
+// get dimension values of player element to use for collision detection
+export function getPlayerRect() {
+  return playerEl.getBoundingClientRect();
+}
+
 function handleRun(delta, speedScale) {
   // if player is jumping, set sprite to stationary image
   if (isJumping) {

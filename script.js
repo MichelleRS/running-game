@@ -1,7 +1,7 @@
 /* imports */
 import { setupGround, updateGround } from "./ground.js";
-import { setupHurdle, updateHurdle } from "./hurdle.js";
-import { setupPlayer, updatePlayer } from "./player.js";
+import { getHurdleRects, setupHurdle, updateHurdle } from "./hurdle.js";
+import { getPlayerRect, setupPlayer, updatePlayer } from "./player.js";
 
 /* initialize constants */
 // world width and height ratio for use in setPixelToWorldScale()
@@ -60,10 +60,30 @@ function update(time) {
   updateSpeedScale(delta);
   // update score
   updateScore(delta);
+  // handle game over
+  if (checkGameOver()) return handleGameOver();
   // set lastTime to time
   lastTime = time;
   // call update function
   window.requestAnimationFrame(update);
+}
+
+// function to check for game over
+function checkGameOver() {
+  // get player dimensions
+  const playerRect = getPlayerRect();
+  // return true if player and hurdle collide
+  return getHurdleRects().some((rect) => isCollision(rect, playerRect));
+}
+
+// function to check if player and hurdle collide
+function isCollision(rect1, rect2) {
+  return (
+    rect1.left < rect2.right &&
+    rect1.top < rect2.bottom &&
+    rect1.right > rect2.left &&
+    rect1.bottom > rect2.top
+  );
 }
 
 function updateSpeedScale(delta) {
@@ -97,6 +117,11 @@ function handleStartGame() {
   window.requestAnimationFrame(update);
 }
 
+// TODO function to handle game over
+function handleGameOver() {
+  // TODO restart game
+  console.log("game over!!");
+}
 // function to scale world
 function setPixelToWorldScale() {
   let worldToPixelScale;
