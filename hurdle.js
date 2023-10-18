@@ -1,5 +1,8 @@
 /* imports */
-import { setCustomProperty } from "./updateCustomProperty.js";
+import {
+  incrementCustomProperty,
+  setCustomProperty,
+} from "./updateCustomProperty.js";
 
 /* local constants */
 // get world element
@@ -20,10 +23,15 @@ let nextHurdleTime;
 export function setupHurdle() {
   // set nextHurdleTime for game start
   nextHurdleTime = HURDLE_INTERVAL_MIN;
+  // TODO remove hurdles from screen
 }
 
 export function updateHurdle(delta, speedScale) {
-  // TODO remove hurdles that are off screen
+  // render hurdle
+  document.querySelectorAll("[data-hurdle]").forEach((hurdle) => {
+    incrementCustomProperty(hurdle, "--left", delta * speedScale * SPEED * -1);
+    // TODO remove hurdles that are off screen
+  });
 
   // if our nextHurdleTime is less than or equal to 0
   if (nextHurdleTime <= 0) {
@@ -51,7 +59,7 @@ function createHurdle() {
   console.log("hurdle", hurdle);
 }
 
-// TODO function to return random number between min (200) and max (500) values
+// function to return random interval value
 function randomNumberBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
