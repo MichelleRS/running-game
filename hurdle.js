@@ -1,5 +1,6 @@
 /* imports */
 import {
+  getCustomProperty,
   incrementCustomProperty,
   setCustomProperty,
 } from "./updateCustomProperty.js";
@@ -20,17 +21,25 @@ const HURDLE_INTERVAL_MAX = 2000;
 let nextHurdleTime;
 
 /* export functions */
+// set up hurdle sprite for game start
 export function setupHurdle() {
-  // set nextHurdleTime for game start
+  // set nextHurdleTime
   nextHurdleTime = HURDLE_INTERVAL_MIN;
-  // TODO remove hurdles from screen
+  // remove hurdles from DOM
+  document.querySelectorAll("[data-hurdle]").forEach((hurdle) => {
+    hurdle.remove;
+  });
 }
 
 export function updateHurdle(delta, speedScale) {
   // render hurdle
   document.querySelectorAll("[data-hurdle]").forEach((hurdle) => {
     incrementCustomProperty(hurdle, "--left", delta * speedScale * SPEED * -1);
-    // TODO remove hurdles that are off screen
+    // remove hurdles that are off screen
+    if (getCustomProperty(hurdle, "--left") <= -100) {
+      hurdle.remove();
+      console.log("removed!");
+    }
   });
 
   // if our nextHurdleTime is less than or equal to 0
@@ -56,7 +65,6 @@ function createHurdle() {
   hurdle.classList.add("hurdle");
   setCustomProperty(hurdle, "--left", 100);
   worldEl.append(hurdle);
-  console.log("hurdle", hurdle);
 }
 
 // function to return random interval value
