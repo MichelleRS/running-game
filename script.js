@@ -1,5 +1,6 @@
 /* imports */
 import { setupGround, updateGround } from "./ground.js";
+import { setupHurdle, updateHurdle } from "./hurdle.js";
 import { setupPlayer, updatePlayer } from "./player.js";
 
 /* initialize constants */
@@ -53,6 +54,8 @@ function update(time) {
   updateGround(delta, speedScale);
   // function call to update player
   updatePlayer(delta, speedScale);
+  // function call to update hurdle element
+  updateHurdle(delta, speedScale);
   // function call to update speedScale
   updateSpeedScale(delta);
   // update score
@@ -86,6 +89,8 @@ function handleStartGame() {
   setupGround();
   // function call to set up player
   setupPlayer();
+  // function call to set up hurdle element
+  setupHurdle();
   //remove start screen text
   startScreenEl.classList.add("hide");
   // update frame
