@@ -1,10 +1,16 @@
+/* imports */
+import {
+  getCustomProperty,
+  incrementCustomProperty,
+  setCustomProperty,
+} from "./updateCustomProperty.js";
+
+/* initialize constants for player */
 // get player element
 const playerEl = document.querySelector("[data-player]");
-console.log("playerEl", playerEl);
-
-/* initialize constants */
+const JUMP_SPEED = 0.45;
+const GRAVITY = 0.0015;
 const PLAYER_FRAME_COUNT = 2;
-// every animation of our frame will last 1 hundredth of a second
 const FRAME_TIME = 100;
 
 /* state */
@@ -16,6 +22,9 @@ let isJumping;
 let playerFrame;
 // declare variable for current frame time
 let currentFrameTime;
+// declare variable for y velocity
+// note: used for handling jump calculations
+let yVelocity;
 
 // setup player
 export function setupPlayer() {
@@ -26,14 +35,22 @@ export function setupPlayer() {
   playerFrame = 0;
   // set current frame time to 0
   currentFrameTime = 0;
+  // set yVelocity to 0
+  yVelocity = 0;
+  // align player with ground
+  setCustomProperty(playerEl, "--bottom", 0);
+  // reset jump
+  document.removeEventListener("keydown", onJump);
+  // listen for jump
+  document.addEventListener("keydown", onJump);
 }
 // update player
 export function updatePlayer(delta, speedScale) {
   console.log("Update player!");
   // function call to handle running
   handleRun(delta, speedScale);
-  // TODO function call to handle jumping
-  handleJump();
+  // function call to handle jumping
+  handleJump(delta);
 }
 
 function handleRun(delta, speedScale) {
@@ -56,6 +73,33 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
-function handleJump() {
-  // TODO
+function handleJump(delta) {
+  // if not jumping, return
+  if (!isJumping) return;
+
+  // if jumping...
+  // take bottom position of player and move up or down depending on velocity of player
+  incrementCustomProperty(playerEl, "--bottom", yVelocity * delta);
+  // end jump: stop player from moving below ground element
+  // if the --bottom class property of the player element is less than or equal to 0
+  if (getCustomProperty(playerEl, "--bottom") <= 0) {
+    // set --bottom class property to 0
+    setCustomProperty(playerEl, "--bottom", 0);
+    // stop jumping by setting isJumping to false
+    isJumping = false;
+  }
+  // assign value to yVelocity: subtract the product of gravity and delta (for scaling with the frame rate) from the yVelocity
+  yVelocity -= GRAVITY * delta;
+}
+
+// start jump: set yVelocity to jump
+// note: passed in an event listener in setUpPlayer()
+function onJump(e) {
+  // if user did not press space or is not jumping, return
+  if (e.code !== "Space" || isJumping) return;
+  // if user pressed space and/or is jumping...
+  // set value of yVelocity to JUMP_SPEED
+  yVelocity = JUMP_SPEED;
+  // set value of isJumping to true
+  isJumping = true;
 }
