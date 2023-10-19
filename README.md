@@ -8,8 +8,10 @@
 
 ## Status
 
-- In progress
+- MVP complete
 
-## Resource
+## Resources
 
-[How to Create Your First Game - JavaScript.](https://www.youtube.com/watch?v=47eXVRJKdkU) Web Dev Simplified. Dec. 11, 2021.
+- [How to Create Your First Game - JavaScript.](https://www.youtube.com/watch?v=47eXVRJKdkU) Web Dev Simplified. Dec. 11, 2021.
+
+- Original game source: Google Chrome Dinosaur Game
