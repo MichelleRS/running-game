@@ -38,7 +38,6 @@ export function updateHurdle(delta, speedScale) {
     // remove hurdles that are off screen
     if (getCustomProperty(hurdle, "--left") <= -100) {
       hurdle.remove();
-      console.log("removed!");
     }
   });
 
@@ -50,7 +49,6 @@ export function updateHurdle(delta, speedScale) {
     nextHurdleTime =
       randomNumberBetween(HURDLE_INTERVAL_MIN, HURDLE_INTERVAL_MAX) /
       speedScale;
-    console.log("nextHurdleTime", nextHurdleTime);
   }
   // take nextHurdleTime and subtract the delta from it (makes the value smaller and smaller)
   nextHurdleTime -= delta;

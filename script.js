@@ -22,7 +22,6 @@ const worldEl = document.querySelector("[data-world");
 const startScreenEl = document.querySelector("[data-start-screen]");
 // get score element
 const scoreEl = document.querySelector("[data-score]");
-console.log("scoreEl", scoreEl);
 
 /* on load and events */
 // function call to scale world based on how big screen is
@@ -45,7 +44,6 @@ let speedScale;
 function update(time) {
   // handle gap between game load and start time
   if (lastTime == null) {
-    console.log("null!");
     // update last time to be current time
     lastTime = time;
     // update frame
@@ -104,7 +102,6 @@ function updateScore(delta) {
 }
 
 function handleStartGame() {
-  console.log("I pressed any key to start the game!");
   // set lastTime to null for game restart
   lastTime = null;
   // set speed scale
@@ -125,7 +122,6 @@ function handleStartGame() {
 
 // function to handle game over
 function handleGameOver() {
-  console.log("game over!!");
   // change player image
   setPlayerLose();
   // restart game

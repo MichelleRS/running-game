@@ -29,7 +29,6 @@ let yVelocity;
 /* export functions */
 // setup player
 export function setupPlayer() {
-  console.log("Set up player!");
   // set isJumping to false
   isJumping = false;
   // set player frame to 0
@@ -48,7 +47,6 @@ export function setupPlayer() {
 
 // update player
 export function updatePlayer(delta, speedScale) {
-  console.log("Update player!");
   // function call to handle running
   handleRun(delta, speedScale);
   // function call to handle jumping

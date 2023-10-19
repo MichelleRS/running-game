@@ -18,9 +18,6 @@ body {
 .world {
   overflow: hidden;
   position: relative;
-  /* placeholder w and h (will control in js) */
-  /* width: 100%; */
-  /* height: 200px; */
 }
 
 .score {
