@@ -1,7 +1,12 @@
 /* imports */
 import { setupGround, updateGround } from "./ground.js";
 import { getHurdleRects, setupHurdle, updateHurdle } from "./hurdle.js";
-import { getPlayerRect, setupPlayer, updatePlayer } from "./player.js";
+import {
+  getPlayerRect,
+  setPlayerLose,
+  setupPlayer,
+  updatePlayer,
+} from "./player.js";
 
 /* initialize constants */
 // world width and height ratio for use in setPixelToWorldScale()
@@ -78,6 +83,7 @@ function checkGameOver() {
 
 // function to check if player and hurdle collide
 function isCollision(rect1, rect2) {
+  // return true if all this is true:
   return (
     rect1.left < rect2.right &&
     rect1.top < rect2.bottom &&
@@ -119,8 +125,10 @@ function handleStartGame() {
 
 // TODO function to handle game over
 function handleGameOver() {
-  // TODO restart game
   console.log("game over!!");
+  // change player image
+  setPlayerLose();
+  // TODO restart game
 }
 // function to scale world
 function setPixelToWorldScale() {

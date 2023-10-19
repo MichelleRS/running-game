@@ -26,6 +26,7 @@ let currentFrameTime;
 // note: used for handling jump calculations
 let yVelocity;
 
+/* export functions */
 // setup player
 export function setupPlayer() {
   console.log("Set up player!");
@@ -44,6 +45,7 @@ export function setupPlayer() {
   // listen for jump
   document.addEventListener("keydown", onJump);
 }
+
 // update player
 export function updatePlayer(delta, speedScale) {
   console.log("Update player!");
@@ -58,6 +60,13 @@ export function getPlayerRect() {
   return playerEl.getBoundingClientRect();
 }
 
+// settings for when player loses
+export function setPlayerLose() {
+  // change player image
+  playerEl.src = "./assets/player-lose.png";
+}
+
+/* local functions */
 function handleRun(delta, speedScale) {
   // if player is jumping, set sprite to stationary image
   if (isJumping) {
