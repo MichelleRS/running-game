@@ -123,12 +123,18 @@ function handleStartGame() {
   window.requestAnimationFrame(update);
 }
 
-// TODO function to handle game over
+// function to handle game over
 function handleGameOver() {
   console.log("game over!!");
   // change player image
   setPlayerLose();
-  // TODO restart game
+  // restart game
+  // note: setTimeout prevents game from auto restarting in cases where space bar is pressed on collision
+  setTimeout(() => {
+    document.addEventListener("keydown", handleStartGame, { once: true });
+    // reveal start screen
+    startScreenEl.classList.remove("hide");
+  }, 100);
 }
 // function to scale world
 function setPixelToWorldScale() {

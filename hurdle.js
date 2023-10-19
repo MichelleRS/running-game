@@ -27,7 +27,7 @@ export function setupHurdle() {
   nextHurdleTime = HURDLE_INTERVAL_MIN;
   // remove hurdles from DOM
   document.querySelectorAll("[data-hurdle]").forEach((hurdle) => {
-    hurdle.remove;
+    hurdle.remove();
   });
 }
 
