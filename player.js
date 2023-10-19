@@ -68,7 +68,7 @@ export function setPlayerLose() {
 function handleRun(delta, speedScale) {
   // if player is jumping, set sprite to stationary image
   if (isJumping) {
-    playerEl.src = "./assets/player-stationary.png";
+    playerEl.src = "./assets/player-jump.png";
     return;
   }
   // animate player sprite based on frame time
