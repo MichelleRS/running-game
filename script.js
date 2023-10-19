@@ -102,7 +102,7 @@ function handleStartGame() {
   // set lastTime to null for game restart
   lastTime = null;
   // set speed scale
-  speedScale = 0.5;
+  speedScale = 1;
   // set score to 0
   score = 0;
   // function call to set up ground elements
