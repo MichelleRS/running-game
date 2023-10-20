@@ -52,13 +52,13 @@ body {
   --bottom: 0;
   position: absolute;
   left: 1%;
-  height: 30%;
+  height: 28%;
   bottom: calc(var(--bottom) * 1%);
 }
 
 .hurdle {
   position: absolute;
   left: calc(var(--left) * 1%);
-  height: 30%;
+  height: 28%;
   bottom: 0;
 }
