@@ -10,6 +10,10 @@
 
 - MVP complete
 
+## Updates
+
+- [x] Enable jump on click or up arrow
+
 ## Resources
 
 - [How to Create Your First Game - JavaScript.](https://www.youtube.com/watch?v=47eXVRJKdkU) Web Dev Simplified. Dec. 11, 2021.
