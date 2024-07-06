@@ -29,19 +29,25 @@ let yVelocity;
 /* export functions */
 // setup player
 export function setupPlayer() {
-  // set isJumping to false
+  // initialize player state
+  // not jumping
   isJumping = false;
-  // set player frame to 0
+  // start with the first frame of the player
   playerFrame = 0;
-  // set current frame time to 0
+  // reset the time since last frame change
   currentFrameTime = 0;
-  // set yVelocity to 0
+  // reset vertical velocity for jump calculations
   yVelocity = 0;
+
   // align player with ground
   setCustomProperty(playerEl, "--bottom", 0);
-  // reset jump
+
+  // prepare player for jump actions
+  // remove any existing keydown event to avoid duplicates
   document.removeEventListener("keydown", onJump);
-  // listen for jump
+  // enable jump on mouse click
+  document.addEventListener("click", onJump);
+  // enable jump on key press (spacebar or up arrow)
   document.addEventListener("keydown", onJump);
 }
 
@@ -107,9 +113,10 @@ function handleJump(delta) {
 // start jump: set yVelocity to jump
 // note: passed in an event listener in setUpPlayer()
 function onJump(e) {
-  // if user did not press space or is not jumping, return
-  if (e.code !== "Space" || isJumping) return;
-  // if user pressed space and/or is jumping...
+  // check if the event is a keyboard event other than spacebar or up arrow press, or if already jumping, then return without action
+  if ((e.code && e.code !== "Space" && e.code !== "ArrowUp") || isJumping)
+    return;
+  // if user pressed jump keys (space or up arrow) and is not already jumping...
   // set value of yVelocity to JUMP_SPEED
   yVelocity = JUMP_SPEED;
   // set value of isJumping to true
