@@ -103,6 +103,11 @@ function updateScore(delta) {
   scoreEl.textContent = Math.floor(score);
 }
 
+function updateHighScoreDisplay() {
+  const highScoreEl = document.getElementById("highScore");
+  highScoreEl.textContent = highScore;
+}
+
 function handleStartGame() {
   // set lastTime to null for game restart
   lastTime = null;
@@ -112,6 +117,8 @@ function handleStartGame() {
   score = 0;
   // initialize high score from local storage
   highScore = Number(localStorage.getItem("highScore")) || 0;
+  // update high score display
+  updateHighScoreDisplay();
   // function call to set up ground elements
   setupGround();
   // function call to set up player
@@ -132,6 +139,8 @@ function updateHighScore() {
     highScore = Math.floor(score);
     // update the high score in local storage
     localStorage.setItem("highScore", highScore);
+    // update high score display
+    updateHighScoreDisplay();
   }
 
   console.log("highScore", highScore);
