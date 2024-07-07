@@ -34,10 +34,12 @@ window.addEventListener("keydown", handleStartGame, { once: true });
 /* state */
 // declare variable to hold last time a frame runs in update()
 let lastTime;
-// declare variable to hold score
-let score;
 // declare variable to hold speed scale
 let speedScale;
+// declare variable to hold score
+let score;
+// declare variable to hold high score
+let highScore;
 
 /* functions */
 // game update function
@@ -108,6 +110,8 @@ function handleStartGame() {
   speedScale = 1;
   // set score to 0
   score = 0;
+  // initialize high score from local storage
+  highScore = Number(localStorage.getItem("highScore")) || 0;
   // function call to set up ground elements
   setupGround();
   // function call to set up player
@@ -127,11 +131,13 @@ function updateHighScore() {
 
   // check if the current score is higher than the high score
   if (score > highScore) {
+    // update state
+    highScore = Math.floor(score);
     // update the high score in local storage
-    localStorage.setItem("highScore", score);
+    localStorage.setItem("highScore", highScore);
   }
 
-  console.log("highScore", Math.floor(highScore));
+  console.log("highScore", highScore);
 }
 
 // function to handle game over
