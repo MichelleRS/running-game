@@ -120,8 +120,25 @@ function handleStartGame() {
   window.requestAnimationFrame(update);
 }
 
+// function to update high score in local storage
+function updateHighScore() {
+  // retrieve the current high score from local storage or set to 0 if not found
+  const highScore = Number(localStorage.getItem("highScore")) || 0;
+
+  // check if the current score is higher than the high score
+  if (score > highScore) {
+    // update the high score in local storage
+    localStorage.setItem("highScore", score);
+  }
+
+  console.log("highScore", Math.floor(highScore));
+}
+
 // function to handle game over
 function handleGameOver() {
+  // update high score before resetting game
+  updateHighScore();
+
   // change player image
   setPlayerLose();
   // restart game
@@ -132,6 +149,7 @@ function handleGameOver() {
     startScreenEl.classList.remove("hide");
   }, 100);
 }
+
 // function to scale world
 function setPixelToWorldScale() {
   let worldToPixelScale;
