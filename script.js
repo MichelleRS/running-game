@@ -126,9 +126,6 @@ function handleStartGame() {
 
 // function to update high score in local storage
 function updateHighScore() {
-  // retrieve the current high score from local storage or set to 0 if not found
-  const highScore = Number(localStorage.getItem("highScore")) || 0;
-
   // check if the current score is higher than the high score
   if (score > highScore) {
     // update state
