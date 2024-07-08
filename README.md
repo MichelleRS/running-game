@@ -13,6 +13,8 @@
 ## Updates
 
 - [x] Enable jump on click or up arrow
+- [x] Start screen instructions
+- [x] Display high score on start screen
 
 ## Resources
 
