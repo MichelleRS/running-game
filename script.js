@@ -38,8 +38,8 @@ let lastTime;
 let speedScale;
 // declare variable to hold score
 let score;
-// declare variable to hold high score
-let highScore;
+// initialize high score from local storage
+let highScore = Number(localStorage.getItem("highScore")) || 0;
 
 /* functions */
 // game update function
@@ -115,8 +115,6 @@ function handleStartGame() {
   speedScale = 1;
   // set score to 0
   score = 0;
-  // initialize high score from local storage
-  highScore = Number(localStorage.getItem("highScore")) || 0;
   // update high score display
   updateHighScoreDisplay();
   // function call to set up ground elements
@@ -177,3 +175,6 @@ function setPixelToWorldScale() {
   worldEl.style.width = `${WORLD_WIDTH * worldToPixelScale}px`;
   worldEl.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
 }
+
+// display high score on page load
+document.addEventListener("DOMContentLoaded", updateHighScoreDisplay);
