@@ -1,25 +1,28 @@
 # Running Game
 
-## MVP Goal
+![Gameplay Screenshot](./assets/game-play.png)
 
-- Player moves across screen and jumps over hurdles
-- Score accumulates based on time
-- Game is over when player bumps into a hurdle
+An endless runner game for desktop browsers built with JavaScript, HTML, and CSS. The player moves across the screen and jumps over hurdles while accumulating points. The game ends when the player collides with a hurdle.
 
-## Status
+## Features
 
-- MVP complete
+- Endless runner gameplay with increasing difficulty.
+- Jump functionality using the spacebar, up arrow, or mouse click/tap.
+- Start screen with instructions and high score display.
+- Persistent high score tracking using `localStorage`.
+- Scales to fit different desktop screen sizes.
 
-## Updates
+## Tech Stack
 
-- [x] Enable jump on click or up arrow
-- [x] Start screen instructions
-- [x] Display high score on start screen
+- **JavaScript**: Core game logic and DOM manipulation.
+- **HTML**: Structure of the game elements.
+- **CSS**: Styling and animations.
+- **LocalStorage**: Persistent high score tracking.
 
-## Resources
+## Acknowledgements
 
-- [How to Create Your First Game - JavaScript.](https://www.youtube.com/watch?v=47eXVRJKdkU) Web Dev Simplified. Dec. 11, 2021.
 - Google Chrome Dinosaur Game.
+- [How to Create Your First Game - JavaScript.](https://www.youtube.com/watch?v=47eXVRJKdkU) Web Dev Simplified. Dec. 11, 2021.
 - Chip 'n Dale: Rescue Rangers (1990). Nintendo Entertainment System.
   - Player sprites for Dale from [The Spriters Resource](https://www.spriters-resource.com/nes/chipndale/sheet/441/)
 - Super Mario Bros. 2 (1988). Nintendo Entertainment System.
