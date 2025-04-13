@@ -2,7 +2,7 @@
 
 ![Gameplay Screenshot](./assets/game-play.png)
 
-[Play the Game](https://87c3135e.running-game.pages.dev/)
+[Play the Game](https://running-game.pages.dev/)
 
 An endless runner game for desktop browsers built with JavaScript, HTML, and CSS. The player moves across the screen and jumps over hurdles while accumulating points. The game ends when the player collides with a hurdle.
 
