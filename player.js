@@ -45,8 +45,13 @@ export function setupPlayer() {
   // prepare player for jump actions
   // remove any existing keydown event to avoid duplicates
   document.removeEventListener("keydown", onJump);
+  document.removeEventListener("click", onJump);
+  document.removeEventListener("touchstart", onJump);
+
   // enable jump on mouse click
   document.addEventListener("click", onJump);
+  // enable jump on touch for mobile devices
+  document.addEventListener("touchstart", onJump);
   // enable jump on key press (spacebar or up arrow)
   document.addEventListener("keydown", onJump);
 }
@@ -110,15 +115,20 @@ function handleJump(delta) {
   yVelocity -= GRAVITY * delta;
 }
 
-// start jump: set yVelocity to jump
-// note: passed in an event listener in setUpPlayer()
 function onJump(e) {
-  // check if the event is a keyboard event other than spacebar or up arrow press, or if already jumping, then return without action
-  if ((e.code && e.code !== "Space" && e.code !== "ArrowUp") || isJumping)
+  // check if already jumping
+  if (isJumping) return;
+
+  // handle keyboard events
+  if (e.type === "keydown" && e.code !== "Space" && e.code !== "ArrowUp")
     return;
-  // if user pressed jump keys (space or up arrow) and is not already jumping...
-  // set value of yVelocity to JUMP_SPEED
+
+  // set jump physics after confirming valid input (keyboard, click, or touch)
   yVelocity = JUMP_SPEED;
-  // set value of isJumping to true
   isJumping = true;
+
+  // prevent default for touch events to avoid scrolling
+  if (e.type === "touchstart") {
+    e.preventDefault();
+  }
 }

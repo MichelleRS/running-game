@@ -30,6 +30,8 @@ setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
 // if any key is pressed, start game with condition of only happening once on key press
 window.addEventListener("keydown", handleStartGame, { once: true });
+// add touch event for mobile devices to start the game
+window.addEventListener("touchstart", handleStartGame, { once: true });
 
 /* state */
 // declare variable to hold last time a frame runs in update()
@@ -155,6 +157,7 @@ function handleGameOver() {
   // note: setTimeout prevents game from auto restarting in cases where space bar is pressed on collision
   setTimeout(() => {
     document.addEventListener("keydown", handleStartGame, { once: true });
+    document.addEventListener("touchstart", handleStartGame, { once: true });
     // reveal start screen
     startScreenEl.classList.remove("hide");
   }, 100);

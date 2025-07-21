@@ -6,6 +6,12 @@
   user-select: none;
 }
 
+html, body {
+  overscroll-behavior: none; /* prevents pull-to-refresh and overscroll bounce */
+  touch-action: manipulation; /* improves touch responsiveness */
+  -webkit-tap-highlight-color: transparent; /* removes tap highlight on iOS */
+}
+
 body {
   font-family: "Courier New", Courier, monospace;
   margin: 0;

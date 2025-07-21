@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- prevent accidental zoom -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" type="module"></script>
     <title>Running Game</title>
@@ -12,7 +16,7 @@
     <div class="world" data-world>
       <div class="score" data-score>0</div>
       <div class="start-screen" data-start-screen>
-        <p>Jump over hurdles using space, ↑, or click.</p>
+        <p>Jump over hurdles using space, ↑, click, or tap</p>
         <p>Press any key to start</p>
         <p>High score: <span id="highScore"></span></p>
       </div>
